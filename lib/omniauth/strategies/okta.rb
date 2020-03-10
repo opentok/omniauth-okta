@@ -82,11 +82,10 @@ module OmniAuth
       # Okta provides a default, by default.
       #
       # @return [String]
-      def authorization_server_path
+      def authorization_server_issuer
         site                 = client_options.fetch(:site)
         authorization_server = client_options.fetch(:authorization_server, 'default')
-
-        "#{site}/oauth2/#{authorization_server}"
+        client_options.fetch(:issuer, "#{site}/oauth2/#{authorization_server}")
       end
 
       # Specifies the audience for the authorization server
@@ -105,7 +104,7 @@ module OmniAuth
                    false,
                    verify_iss:        true,
                    verify_aud:        true,
-                   iss:               authorization_server_path,
+                   iss:               authorization_server_issuer,
                    aud:               authorization_server_audience,
                    verify_sub:        true,
                    verify_expiration: true,

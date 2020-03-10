@@ -86,7 +86,7 @@ module OmniAuth
         site                 = client_options.fetch(:site)
         authorization_server = client_options.fetch(:authorization_server, 'default')
 
-        "#{site}/oauth2/#{authorization_server}"
+        "#{site}#{authorization_server}"
       end
 
       # Specifies the audience for the authorization server
